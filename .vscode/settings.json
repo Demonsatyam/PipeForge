@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "/home/satyam/Desktop/PipeForge/backend/venv/bin/python",
+    "python.analysis.extraPaths": [
+        "/home/satyam/Desktop/PipeForge/backend/venv/lib/python3.13/site-packages"
+    ]
+}
