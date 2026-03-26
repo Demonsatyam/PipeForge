@@ -111,6 +111,58 @@ Result:      Two left-side handles labeled "topic" and "audience"
 
 ---
 
+## Branching Strategy
+
+### Branch Structure
+| Branch | Purpose |
+|--------|---------|
+| `main` | Stable, tested, production-ready code only |
+| `test` | All active development happens here |
+
+### Workflow
+- All work is done on `test` branch
+- After each phase is built and tested, it is merged into `main`
+- `main` is never directly edited — only receives merges from `test`
+- `TASK.md` lives only on `test` and is ignored on `main`
+
+### Phase-wise Merge Plan
+| Phase | Work | Merge Commit on Main |
+|-------|------|----------------------|
+| Phase 1 | BaseNode abstraction + 5 new nodes | `merge: Phase 1 complete and tested` |
+| Phase 2 | Dark UI styling | `merge: Phase 2 complete and tested` |
+| Phase 3 | TextNode auto-resize + variable handles | `merge: Phase 3 complete and tested` |
+| Phase 4 | Backend integration + DAG validation | `merge: Phase 4 complete and tested` |
+
+### Day-to-Day Commands
+```bash
+# Start working
+git checkout test
+
+# Save progress
+git add .
+git commit -m "feat: description of what you did"
+git push origin test
+
+# Merge a completed phase into main
+git checkout main
+git merge test --no-ff -m "merge: Phase X complete and tested"
+git push origin main
+
+# Return to work
+git checkout test
+```
+
+**3. Commit the update**
+```bash
+git add TASK.md
+git commit -m "docs: add branching strategy to TASK.md"
+git push origin test
+```
+
+That's it — your TASK.md now serves as a complete reference for both building and branching. Ready to start Phase 1 whenever you are! 🚀
+
+---
+
 ### Part 4 — Backend Integration
 
 #### Frontend (`submit.js`)
